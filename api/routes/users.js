@@ -57,7 +57,7 @@ router.post('/login', checkAuth, (req, res, next) => {
                             {   email: user.email,
                                 password: user.password
                             },
-                            "secret",
+                            process.env.JWT_KEY,
                             { expiresIn: '1h'}
                         );
 
