@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Product = require('./../models/product');
+const checkAuth = require('../middleware/check-auth');
 
-router.get('/', (req, res, next) => {
+router.get('/', checkAuth, (req, res, next) => {
     Product.find().select('_id name price').exec()
     .then(result => {
         const response = {
@@ -15,7 +16,8 @@ router.get('/', (req, res, next) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
+    console.log(`CheckAuth in Request: ${JSON.stringify(req.userData)}`)
     const product = new Product({
         _id: mongoose.Types.ObjectId(),
         name: req.body.name,
@@ -35,7 +37,7 @@ router.post('/', (req, res, next) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
-router.get('/:productId', (req, res, next) => {
+router.get('/:productId', checkAuth, (req, res, next) => {
     const productId = req.params.productId;
     Product.findById(productId).exec()
     .then(result => {
@@ -56,7 +58,7 @@ router.get('/:productId', (req, res, next) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
-router.patch('/:productId', (req, res, next) => {
+router.patch('/:productId', checkAuth, (req, res, next) => {
     const productId = req.params.productId;
     const updateOps = {};
     for (const ops of req.body) {
@@ -69,7 +71,7 @@ router.patch('/:productId', (req, res, next) => {
     .catch(err => res.status(500).json({error: err}));
 });
 
-router.delete('/:productId', (req, res, next) => {
+router.delete('/:productId', checkAuth, (req, res, next) => {
     const productId = req.params.productId;
     Product.remove({_id: productId}).exec()
     .then(result => res.status(200).json({

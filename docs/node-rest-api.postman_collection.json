@@ -65,6 +65,11 @@
 								"name": "Content-Type",
 								"value": "application/json",
 								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxrb25lcnVAaG90bWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQzd2ppZVQ0MkJZN245T2J1bGlLTlVlUmZ4dHpacnpOQkk2bFI5YU9IZUdCem5yZ0dsRVlsMiIsImlhdCI6MTU2MzMzMTIyMiwiZXhwIjoxNTYzMzM0ODIyfQ.RX2-ibi5bIGbrvr4D3m6C8WyY3DvLZAmHeXd81Zdgas",
+								"type": "text"
 							}
 						],
 						"body": {
@@ -92,14 +97,18 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxrb25lcnVAaG90bWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQzd2ppZVQ0MkJZN245T2J1bGlLTlVlUmZ4dHpacnpOQkk2bFI5YU9IZUdCem5yZ0dsRVlsMiIsImlhdCI6MTU2MzMzMTIyMiwiZXhwIjoxNTYzMzM0ODIyfQ.RX2-ibi5bIGbrvr4D3m6C8WyY3DvLZAmHeXd81Zdgas",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"propName\": \"name\",\n        \"value\": \"Harry Porter 6\"\n    }\n]"
+							"raw": "[\n    {\n        \"propName\": \"name\",\n        \"value\": \"Harry Porter 99\"\n    }\n]"
 						},
 						"url": {
 							"raw": "http://localhost:3000/products/5d2d353a1f018e797e4efbeb",
@@ -233,13 +242,24 @@
 					"name": "Delete order by Id",
 					"request": {
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxrb25lcnVAaG90bWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQzd2ppZVQ0MkJZN245T2J1bGlLTlVlUmZ4dHpacnpOQkk2bFI5YU9IZUdCem5yZ0dsRVlsMiIsImlhdCI6MTU2MzMzMTIyMiwiZXhwIjoxNTYzMzM0ODIyfQ.RX2-ibi5bIGbrvr4D3m6C8WyY3DvLZAmHeXd81Zdgas",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/orders/",
+							"raw": "http://localhost:3000/orders/5d2e2560ee165c2fe4313ae8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -247,7 +267,98 @@
 							"port": "3000",
 							"path": [
 								"orders",
-								""
+								"5d2e2560ee165c2fe4313ae8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"lkoneru@hotmail.com\",\n\t\"password\": \"koneru\",\n\t\"firstName\": \"Prasad\",\n\t\"lastName\": \"Koneru\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"lkoneru@hotmail.com\",\n\t\"password\": \"koneru\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/5d2e4bd47573053edc703006",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"5d2e4bd47573053edc703006"
 							]
 						}
 					},
